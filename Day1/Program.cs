@@ -8,25 +8,54 @@ namespace Day1
 {
   class Program
   {
-    static readonly string cDay1FileName = "input_1.txt";
-    static readonly string cResultFilePath = @"C:\Users\benja\source\repos\AdventOfCode21\Day1\result.txt";
-
-
+    private const string cDay1_1FileName = "input_1.txt";
+    private const string cDay1_2FileName = "input_2.txt";
+    private const string cResultFilePath = @"..\..\..\result.txt";
+    
     static async Task Main(string[] args)
     {
-      var input1 = ReadAllLinesFromFile(PathAsResource(cDay1FileName));
-      var numbers = ConvertStringsToInts(input1);
+      await Solve(PathAsResource(cDay1_2FileName), cResultFilePath, SolveDay1_2);
+    }
 
-      int increases = 0;
-      for(int i = 1; i < numbers.Count; i++)
-      {
-        if (numbers[i] > numbers[i - 1]) increases++;
-      }
-      Console.WriteLine(increases);
-      await WriteLineToFile(increases.ToString(), cResultFilePath);
+    private static string[] SolveDay1_1(string[] input)
+    {
+      var result = NoOfIncreasingNumbers(ConvertStringsToInts(new List<string>(input)));
+      return result.ToString().Split();
+    }
+
+    private static string[] SolveDay1_2(string[] input)
+    {
+      var result = NoOfIncreasingNumbersBy3(ConvertStringsToInts(new List<string>(input)));
+      return result.ToString().Split();
+    }
+
+    private static async Task Solve(string inputPath, string outputPath, Func<string[], string[]> solve)
+    {
+      await WriteAllLinesToFile(solve.Invoke(ReadAllLinesFromFile(inputPath).ToArray()), outputPath);
     }
 
     private static string PathAsResource(string path) => $@"{Environment.CurrentDirectory}\resources\{path}";
+
+    private static int NoOfIncreasingNumbers(IList<int> numbers)
+    {
+      int increases = 0;
+      for (int i = 1; i < numbers.Count; i++)
+      {
+        if (numbers[i] > numbers[i - 1]) increases++;
+      }
+      return increases;
+    }
+
+    private static int NoOfIncreasingNumbersBy3(IList<int> numbers)
+    {
+      int increases = 0;
+      for (int i = 3; i < numbers.Count; i++)
+      {
+        if (numbers[i] + numbers[i - 1] + numbers[i - 2] > numbers[i - 1] + numbers[i - 2] + numbers[i - 3])
+          increases++;
+      }
+      return increases;
+    }
 
     private static List<string> ReadAllLinesFromFile(string filePath)
     {
@@ -58,7 +87,7 @@ namespace Day1
 
     private static List<int> ConvertStringsToInts(List<string> strings)
     {
-      List<int> ints = new List<int>();
+      var ints = new List<int>();
       foreach (var str in strings)
       {
         try
@@ -68,10 +97,6 @@ namespace Day1
         catch (FormatException)
         {
           Console.WriteLine($"Failed to read int {str}, discarding.");
-        }
-        catch (Exception e)
-        {
-          throw e;
         }
       }
       return ints;
