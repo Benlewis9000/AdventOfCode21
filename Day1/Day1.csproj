@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,10 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="resources\input_1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="resources\input_2.txt">
+    <ProjectReference Include="..\Utilities\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="resources\input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
