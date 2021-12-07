@@ -12,7 +12,8 @@ namespace Day3
   internal class Day3
   {
     public static string InputPath => IO.PathAsResource("input.txt");
-    public static string ResultPath => @"..\..\..\result.txt";
+    public static string Part1ResultPath => @"..\..\..\result_1.txt";
+    public static string Part2ResultPath => @"..\..\..\result_2.txt";
 
     static async Task Main(string[] args)
     {
@@ -26,7 +27,7 @@ namespace Day3
 
         return CalculatePowerConsumption(ints, units).ToString().Split();
       });
-      var problem1 = new Problem(solution1, InputPath, ResultPath);
+      var problem1 = new Problem(solution1, InputPath, Part1ResultPath);
       await problem1.Solve();
     }
 
@@ -54,5 +55,7 @@ namespace Day3
 
       return gamma * epsilon;
     }
+
+   // private static int CalculateOxygenGeneratorRating();
   }
 }
