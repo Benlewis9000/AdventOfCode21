@@ -17,6 +17,7 @@ namespace Day2
 
     static async Task Main(string[] args)
     {
+      // Part 1
       var solution1 = new Solution(input =>
       {
         Position position = new Position(Engine.BuildSimpleEngine());
@@ -24,8 +25,9 @@ namespace Day2
         return (position.Horizontal * position.Depth).ToString().Split();
       });
       var problem1 = new Problem(solution1, InputPath, ResultPath);
-      //await problem1.Solve();
+      await problem1.Solve();
 
+      // Part 2
       var solution2 = new Solution(input =>
       {
         Position position = new Position(Engine.BuildAimEngine());
