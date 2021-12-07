@@ -12,17 +12,16 @@ namespace Day1
 {
   class Day1
   {
-    public static string InputPath => IO.PathAsResource("input.txt");
-    public static string Part1ResultPath => @"..\..\..\result_1.txt";
-    public static string Part2ResultPath => @"..\..\..\result_2.txt";
+    public static string InputFilePath => IO.PathAsResource("input.txt");
+    public static string OutputDirPath => @"..\..\..\";
 
     static async Task Main(string[] args)
     {
       var solution1 = new Solution(input => NoOfIncreasingNumbers(Misc.ConvertStringsToInts(new List<string>(input))).ToString().Split());
       var solution2 = new Solution(input => NoOfIncreasingNumbersBy3(Misc.ConvertStringsToInts(new List<string>(input))).ToString().Split());
 
-      var part1 = new Problem(solution1, InputPath, Part1ResultPath);
-      var part2 = new Problem(solution2, InputPath, Part2ResultPath);
+      var part1 = new Problem(solution1, InputFilePath, OutputDirPath, 1);
+      var part2 = new Problem(solution2, InputFilePath, OutputDirPath, 2);
 
       await part1.Solve();
       await part2.Solve();

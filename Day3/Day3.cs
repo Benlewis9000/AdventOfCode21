@@ -11,7 +11,8 @@ namespace Day3
 {
   internal class Day3
   {
-    public static string InputPath => IO.PathAsResource("input.txt");
+    public static string InputFilePath => IO.PathAsResource("input.txt");
+    public static string OutputDirPath => @"..\..\..\";
     public static string Part1ResultPath => @"..\..\..\result_1.txt";
     public static string Part2ResultPath => @"..\..\..\result_2.txt";
 
@@ -27,7 +28,7 @@ namespace Day3
 
         return CalculatePowerConsumption(ints, units).ToString().Split();
       });
-      var problem1 = new Problem(solution1, InputPath, Part1ResultPath);
+      var problem1 = new Problem(solution1, InputFilePath, Part1ResultPath, 1);
       await problem1.Solve();
     }
 

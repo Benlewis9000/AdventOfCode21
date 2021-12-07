@@ -14,11 +14,11 @@ namespace Shared.Challenge
     private string InputPath { get; }
     private string OutputPath { get; }
 
-    public Problem(Solution mSolution, string inputPath, string outputPath)
+    public Problem(Solution mSolution, string inputPath, string outputDirPath, int part)
     {
       this.Solution = mSolution;
       InputPath = inputPath;
-      OutputPath = outputPath;
+      OutputPath = $"{outputDirPath}/result_{part}.txt";
     }
 
     public async Task Solve()

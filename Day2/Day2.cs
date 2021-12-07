@@ -12,9 +12,8 @@ namespace Day2
   //        in fact this may be preferable so out of date results aren't accidentally reused.
   public class Day2
   {
-    public static string InputPath => IO.PathAsResource("input.txt");
-    public static string Part1ResultPath => @"..\..\..\result_1.txt";
-    public static string Part2ResultPath => @"..\..\..\result_2.txt";
+    public static string InputFilePath => IO.PathAsResource("input.txt");
+    public static string OutputDirPath => @"..\..\..\";
 
     static async Task Main(string[] args)
     {
@@ -25,7 +24,7 @@ namespace Day2
         foreach(Vector vector in Vector.ParseVectors(input)) position.Translate(vector);
         return (position.Horizontal * position.Depth).ToString().Split();
       });
-      var problem1 = new Problem(solution1, InputPath, Part1ResultPath);
+      var problem1 = new Problem(solution1, InputFilePath, OutputDirPath, 1);
       await problem1.Solve();
 
       // Part 2
@@ -35,7 +34,7 @@ namespace Day2
         foreach (Vector vector in Vector.ParseVectors(input)) position.Translate(vector);
         return (position.Horizontal * position.Depth).ToString().Split();
       });
-      var problem2 = new Problem(solution2, InputPath, Part2ResultPath);
+      var problem2 = new Problem(solution2, InputFilePath, OutputDirPath, 2);
       await problem2.Solve();
     }
   }
